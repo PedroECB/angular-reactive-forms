@@ -9,65 +9,69 @@
                         <h2 class="card-title text-center text-primary">Cadastre-se</h2>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <span class="form-group-label d-block">Dados pessoais</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nome">
+                        <form #formCliente="ngForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="form-group-label d-block">Dados pessoais</span>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Sobrenome">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="cliente.nome" class="form-control" placeholder="Nome">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="cliente.sobrenome" class="form-control" placeholder="Sobrenome">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="date" [(ngModel)]="cliente.nascimento" class="form-control" placeholder="Nascimento">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="date" class="form-control" placeholder="Nascimento">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="form-group-label d-block">Endereço</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <span class="form-group-label d-block">Endereço</span>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" [(ngModel)]="cliente.rua" class="form-control" placeholder="Rua">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" [(ngModel)]="cliente.cidade" class="form-control" placeholder="Cidade">
+                                </div>
+                                <div class="col-md-2">
+                                    <select name="estado" [(ngModel)]="cliente.estado" id="selectForm"  class="form-control">
+                                        <option value="AM">AM</option>
+                                        <option value="BA">BA</option>
+                                        <option value="SP">SP</option>
+                                        <option value="RO">RO</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Rua">
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <span class="form-group-label d-block">Dados para contato</span>
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Cidade">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" [(ngModel)]="cliente.telefone" class="form-control" placeholder="Telefone">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" [(ngModel)]="cliente.telefone2" class="form-control" placeholder="Telefone 2">
+                                </div>
+
+                                
                             </div>
-                            <div class="col-md-2">
-                                <select name="" id="selectForm" class="form-control">
-                                    <option value="">AM</option>
-                                    <option value="">BA</option>
-                                    <option value="">SP</option>
-                                    <option value="">RO</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-12">
-                                <span class="form-group-label d-block">Dados para contato</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Telefone">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Telefone 2">
-                            </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="card-footer">
-                        <button class="new-button">Salvar</button>
+                        <button class="new-button" (click)="onSubmit()">Salvar</button>
                         <!-- <button class="btn btn-primary">Salvar</button> -->
                     </div>
                 </div>
