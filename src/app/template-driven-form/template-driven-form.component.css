@@ -1,0 +1,85 @@
+.header{
+    width: 100vw;
+    background-color:var(--main-blue);
+    height: 25vh;
+    margin-bottom: -100px;
+}
+
+
+#card-form{
+    position:unset;
+    width: 100%;
+}
+
+#selectForm{
+    font-weight: bold;
+}
+
+.form-group-label{
+    color:var(--main-blue);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+input::placeholder{
+    color: rgb(154, 160, 160);
+}
+
+button:focus{
+    box-shadow: none !important;
+    outline: 0 !important;
+}
+
+.new-button{
+    margin: 5px 0 0;
+    height: 44px;
+    background: #2387eb;
+    border: 0;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+button{
+    width: 100%;
+    margin: 10px 0 0;
+    height: 44px;
+    border: 0;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.6rem;
+    transition: background 0.2s; 
+}
+
+button:hover{
+    opacity: 0.9;
+}
+
+input {
+    background: rgba(163, 159, 159, 0.1);
+    border: 0;
+    border-radius: 4px;
+    height: 44px;
+    padding: 15px;
+    color: #fff;
+    margin: 0 0 10px;
+
+    border: 1px solid rgb(33, 120, 202) !important;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(36, 133, 197) !important;
+  }
+
+
+select{
+    border: 1;
+    border-radius: 4px;
+    height: 44px;
+    padding: 10px;
+    color: rgb(36, 133, 197) !important;
+    margin: 0 0 10px;
+}
