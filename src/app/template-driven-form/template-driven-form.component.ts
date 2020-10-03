@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 export interface Cliente{
   nome: string;
@@ -8,7 +8,7 @@ export interface Cliente{
   cidade: string;
   rua: string;
   telefone:string;
-  telefone2:string;
+  email:string;
 }
 
 
@@ -26,11 +26,11 @@ export class TemplateDrivenFormComponent implements OnInit {
       estado:"AM",  
       cidade: "", 
       rua:"",
-      telefone: "",
-      telefone2: ""
+      email: "",
+      telefone: ""
     }
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
@@ -38,5 +38,14 @@ export class TemplateDrivenFormComponent implements OnInit {
   onSubmit(){
     console.log(this.cliente)
   }
+
+  ngAfterViewChecked(){
+    //your code to update the model
+    this.cdr.detectChanges();
+ }
+
+ blur(){
+   this.cliente.nome = this.cliente.nome.toUpperCase();
+ }
 
 }

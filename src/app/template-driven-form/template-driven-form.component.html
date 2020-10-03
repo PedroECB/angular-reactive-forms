@@ -5,11 +5,11 @@
         <div class="col-md-1"></div>
             <div class="col-md-10">
                 <div class="card" id="card-form">
+                    <form #formCliente="ngForm" (ngSubmit)="onSubmit()">
                     <div class="card-header">
                         <h2 class="card-title text-center text-primary">Cadastre-se</h2>
                     </div>
                     <div class="card-body">
-                        <form #formCliente="ngForm">
                             <div class="row">
                                 <div class="col-md-12">
                                     <span class="form-group-label d-block">Dados pessoais</span>
@@ -18,17 +18,37 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" [(ngModel)]="cliente.nome" class="form-control" placeholder="Nome">
+                                        <input type="text"
+                                        #nomeField="ngModel" 
+                                        [(ngModel)]="cliente.nome" 
+                                        name="nome" 
+                                        class="form-control mb-0"
+                                        [class.is-invalid]="nomeField.invalid && (nomeField.touched || nomeField.dirty)"
+                                        [class.is-valid]="nomeField.valid"
+                                        (blur)="blur()"
+                                        required
+                                        minlength="3" 
+                                        placeholder="Nome">
+                                        <!-- <div class="valid-feedback">
+                                             É possível obter as classes em tempo real do input
+                                             utilizando a notação de nomeclatura de template
+                                            {{ nomeField.className | json }}
+                                        </div> -->
+                                       <span *ngIf="nomeField.invalid && nomeField.touched" class="error-feedback">Informe um nome válido</span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" [(ngModel)]="cliente.sobrenome" class="form-control" placeholder="Sobrenome">
+                                        <input #sobrenomeField type="text" [(ngModel)]="cliente.sobrenome" name="sobrenome" class="form-control is-invalid mb-0" placeholder="Sobrenome">
+                                        <!-- <div>
+                                            {{ sobrenomeField.className }}
+                                        </div> -->
+                                        
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="date" [(ngModel)]="cliente.nascimento" class="form-control" placeholder="Nascimento">
+                                        <input type="date" [(ngModel)]="cliente.nascimento" name="nascimento" class="form-control" placeholder="Nascimento">
                                     </div>
                                 </div>
                             </div>
@@ -39,10 +59,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" [(ngModel)]="cliente.rua" class="form-control" placeholder="Rua">
+                                    <input type="text" [(ngModel)]="cliente.rua" name="rua" class="form-control" placeholder="Rua">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" [(ngModel)]="cliente.cidade" class="form-control" placeholder="Cidade">
+                                    <input type="text" [(ngModel)]="cliente.cidade" name="cidade" class="form-control" placeholder="Cidade">
                                 </div>
                                 <div class="col-md-2">
                                     <select name="estado" [(ngModel)]="cliente.estado" id="selectForm"  class="form-control">
@@ -60,20 +80,23 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" [(ngModel)]="cliente.telefone" class="form-control" placeholder="Telefone">
+                                    <input type="email" required #emailField [(ngModel)]="cliente.email" name="email" class="form-control" placeholder="E-mail">
+                                    <div>
+                                        {{ emailField.className }}
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" [(ngModel)]="cliente.telefone2" class="form-control" placeholder="Telefone 2">
+                                    <input type="text" [(ngModel)]="cliente.telefone" name="telefone2" class="form-control" placeholder="Telefone" required>
                                 </div>
 
                                 
                             </div>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        <button class="new-button" (click)="onSubmit()">Salvar</button>
-                        <!-- <button class="btn btn-primary">Salvar</button> -->
-                    </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="new-button" [disabled]="!formCliente.valid">Salvar</button>
+                            <!-- <button class="btn btn-primary">Salvar</button> -->
+                        </div>
+                    </form>
                 </div>
             </div>
         <div class="col-md-1"></div>
