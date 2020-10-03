@@ -25,7 +25,7 @@
                                         class="form-control mb-0"
                                         [class.is-invalid]="nomeField.invalid && (nomeField.touched || nomeField.dirty)"
                                         [class.is-valid]="nomeField.valid"
-                                        (blur)="blur()"
+                                        (blur)="blur(nomeField)"
                                         required
                                         minlength="3" 
                                         placeholder="Nome">
@@ -34,12 +34,23 @@
                                              utilizando a notação de nomeclatura de template
                                             {{ nomeField.className | json }}
                                         </div> -->
-                                       <span *ngIf="nomeField.invalid && nomeField.touched" class="error-feedback">Informe um nome válido</span>
+                                       <span *ngIf="nomeField.invalid && (nomeField.touched || nomeField.dirty)" class="invalid-feedback">Informe um nome válido</span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input #sobrenomeField type="text" [(ngModel)]="cliente.sobrenome" name="sobrenome" class="form-control is-invalid mb-0" placeholder="Sobrenome">
+                                        <input #sobrenomeField="ngModel" 
+                                            type="text" 
+                                            [(ngModel)]="cliente.sobrenome" 
+                                            name="sobrenome" 
+                                            class="form-control mb-0"
+                                            [class.is-invalid]="sobrenomeField.invalid && (sobrenomeField.touched || sobrenomeField.dirty)"
+                                            [class.is-valid]="sobrenomeField.valid"
+                                            (blur)="blur(sobrenomeField)"
+                                            required
+                                            minlength="3" 
+                                            placeholder="Sobrenome">
+                                        <span class="invalid-feedback"> Informe um sobrenome válido</span>
                                         <!-- <div>
                                             {{ sobrenomeField.className }}
                                         </div> -->
@@ -48,7 +59,18 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="date" [(ngModel)]="cliente.nascimento" name="nascimento" class="form-control" placeholder="Nascimento">
+                                        <input type="date" [(ngModel)]="cliente.nascimento"
+                                        #nascimentoField="ngModel" 
+                                        [value]="2000-01-08" 
+                                        name="nascimento" 
+                                        class="form-control mb-0"
+                                        [class.is-invalid]="nascimentoField.invalid && (nascimentoField.touched || nascimentoField.dirty)"
+                                        required 
+                                        placeholder="Nascimento">
+                                        <span *ngIf="nascimentoField.invalid && (nascimentoField.touched || nascimentoField.dirty)" 
+                                        class="error-feedback"> 
+                                            Informe uma data válida
+                                         </span>
                                     </div>
                                 </div>
                             </div>
@@ -59,10 +81,36 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" [(ngModel)]="cliente.rua" name="rua" class="form-control" placeholder="Rua">
+                                   <div class="form-group">
+                                    <input type="text"
+                                        #ruaField="ngModel" 
+                                        [(ngModel)]="cliente.rua" 
+                                        name="rua" 
+                                        class="form-control mb-0"
+                                        [class.is-invalid]="ruaField.invalid && (ruaField.touched || ruaField.dirty)"
+                                        [class.is-valid]="ruaField.valid"
+                                        (blur)="blur(ruaField)"
+                                        required
+                                        minlength="8" 
+                                        placeholder="Rua">
+                                        <span class="invalid-feedback"> Informe um nome de rua válido</span>
+                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" [(ngModel)]="cliente.cidade" name="cidade" class="form-control" placeholder="Cidade">
+                                    <div class="form-group">
+                                        <input type="text"
+                                        #cidadeField="ngModel" 
+                                        [(ngModel)]="cliente.cidade" 
+                                        name="cidade" 
+                                        class="form-control mb-0"
+                                        [class.is-invalid]="cidadeField.invalid && (cidadeField.touched || cidadeField.dirty)"
+                                        [class.is-valid]="cidadeField.valid"
+                                        (blur)="blur(cidadeField)"
+                                        placeholder="Cidade"
+                                        required
+                                        >
+                                        <span class="invalid-feedback">Informe um nome válido para cidade</span>
+                                    </div>
                                 </div>
                                 <div class="col-md-2">
                                     <select name="estado" [(ngModel)]="cliente.estado" id="selectForm"  class="form-control">
@@ -80,9 +128,24 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="email" required #emailField [(ngModel)]="cliente.email" name="email" class="form-control" placeholder="E-mail">
-                                    <div>
-                                        {{ emailField.className }}
+                                    <div class="form-group">
+                                    <input type="email" 
+                                        required 
+                                        #emailField="ngModel" 
+                                        minlength="8"
+                                        [(ngModel)]="cliente.email" 
+                                        name="email" 
+                                        class="form-control mb-0"
+                                        [class.is-invalid]="emailField.invalid && (emailField.touched || emailField.dirty)"
+                                        [class.is-valid]="emailField.valid"
+                                        (blur)="blur(emailField)"
+                                        placeholder="E-mail">
+                                        <span 
+                                            class="invalid-feedback"
+                                        
+                                            >
+                                            Informe um e-mail válido
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

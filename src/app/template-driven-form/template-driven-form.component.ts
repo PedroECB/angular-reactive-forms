@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 export interface Cliente{
   nome: string;
   sobrenome: string;
-  nascimento: Date;
+  nascimento: string;
   estado:string;
   cidade: string;
   rua: string;
@@ -22,7 +22,7 @@ export class TemplateDrivenFormComponent implements OnInit {
   cliente:Cliente = {
       nome: "",
       sobrenome: "",
-      nascimento: new Date, 
+      nascimento: "", 
       estado:"AM",  
       cidade: "", 
       rua:"",
@@ -33,6 +33,7 @@ export class TemplateDrivenFormComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    // this.cliente.nascimento = new Date('01-01-2000').toISOString().substr(0, 10);
   }
 
   onSubmit(){
@@ -44,8 +45,9 @@ export class TemplateDrivenFormComponent implements OnInit {
     this.cdr.detectChanges();
  }
 
- blur(){
-   this.cliente.nome = this.cliente.nome.toUpperCase();
+ blur(input){
+   this.cliente[input.name] = input.model.toUpperCase(); 
+   
  }
 
 }
