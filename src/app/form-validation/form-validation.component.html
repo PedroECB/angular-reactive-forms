@@ -85,15 +85,15 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button  mat-raised-button color="primary" class="btn-block" type="submit"> Confirmar </button>
-                                <div>
-                                    <ng-container *ngIf="formUserRegister.valid">
+                                <button [disabled]="!formUserRegister.valid"  mat-raised-button color="primary" class="btn-block" type="submit"> Confirmar </button>
+                                <!-- <div>
+                                    <ng-container *ngIf="formUserRegister.valid; else notValid">
                                         É valido
                                     </ng-container>
-                                    <ng-container *ngIf="!formUserRegister.valid">
+                                    <ng-template #notValid>
                                         Não é válido
-                                    </ng-container>
-                                </div>
+                                    </ng-template>
+                                </div> -->
                             </div>
                         </form>
                     </div>
