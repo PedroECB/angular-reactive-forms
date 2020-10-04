@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {Router} from '@angular/router';
 
 export interface Cliente{
   nome: string;
@@ -30,7 +31,7 @@ export class TemplateDrivenFormComponent implements OnInit {
       telefone: ""
     }
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, private router: Router) { }
 
   ngOnInit(): void {
     // this.cliente.nascimento = new Date('01-01-2000').toISOString().substr(0, 10);
@@ -48,6 +49,10 @@ export class TemplateDrivenFormComponent implements OnInit {
  blur(input){
    this.cliente[input.name] = input.model.toUpperCase(); 
    
+ }
+
+ navigate(){
+   this.router.navigate(["form-validation"])
  }
 
 }
