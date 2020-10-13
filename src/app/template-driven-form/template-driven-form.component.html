@@ -21,6 +21,7 @@
                                         <input type="text"
                                         #nomeField="ngModel" 
                                         [(ngModel)]="cliente.nome" 
+                                        autofocus
                                         name="nome" 
                                         class="form-control mb-0"
                                         [class.is-invalid]="nomeField.invalid && (nomeField.touched || nomeField.dirty)"

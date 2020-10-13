@@ -13,6 +13,8 @@
                                             <mat-label>Nome</mat-label>
                                                 <input matInput 
                                                     #nameField="ngModel"
+                                                    #nameit
+                                                    autofocus
                                                     [(ngModel)]="user.name"
                                                     name="name"
                                                     placeholder="Nome completo" 
@@ -22,7 +24,7 @@
                                             <mat-icon matSuffix>person_outline</mat-icon>
                                             <mat-error>Informe um nome válido</mat-error>
                                         </mat-form-field>
-            
+                            
                                         <mat-form-field appearance="outline"  style="width: 100%;" class="mt-1">
                                             <mat-label>E-mail</mat-label>
                                                 <input 
@@ -60,11 +62,13 @@
                                                     [(ngModel)]="user.password"
                                                     name="password"
                                                     matInput
-                                                    required 
+                                                    required
+                                                    minlength="5" 
                                                     [type]="hide ? 'password' : 'text'">
                                             <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                             </button>
+                                            <mat-error>Informe uma senha válida</mat-error>
                                         </mat-form-field>
     
                                         <mat-form-field appearance="outline" style="width: 100%;" class="mt-1">
@@ -74,7 +78,8 @@
                                                 [(ngModel)]="user.confirmPassword"
                                                 name="confirmPassword"
                                                 required
-                                                matInput 
+                                                matInput
+                                                minlength="5" 
                                                 [type]="hideSecondary ? 'password' : 'text'" 
                                                 placeholder="Confirme sua senha">
                                             <button type="button" mat-icon-button matSuffix (click)="hideSecondary = !hideSecondary" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideSecondary">
