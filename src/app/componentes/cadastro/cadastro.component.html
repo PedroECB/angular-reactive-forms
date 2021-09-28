@@ -1,0 +1,65 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+
+  <form #formUsuario="ngForm" (ngSubmit)="onSubmit()">
+    <mat-card class="form-one">
+      <mat-card-title>Cadastre-se</mat-card-title>
+      <mat-card-subtitle>Precisamos de algumas informações</mat-card-subtitle>
+      <mat-divider></mat-divider>
+      <mat-form-field appearance="outline" class="wd-100">
+          <mat-label>Nome completo</mat-label>
+          <input matInput type="text" placeholder="Nome completo" [(ngModel)]="Usuario.Nome" name="nome" [value]="Usuario.Nome">
+      </mat-form-field>
+
+      <!-- <span>{{ Usuario.Nome | currency:'BRL'}}</span> -->
+      <mat-form-field appearance="outline" class="wd-100">
+          <mat-label>E-mail</mat-label>
+          <input matInput type="email" placeholder="exemplo@email.com" [(ngModel)]="Usuario.Email" name="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="wd-100">
+          <mat-label>CPF</mat-label>
+          <input matInput type="tel" placeholder="000.000.000-00" [(ngModel)]="Usuario.CPF" name="cpf" [dropSpecialCharacters]="false" mask="000.000.000-00">
+          <mat-hint>Digite apenas números </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="wd-100">
+          <mat-label>Salário desejado</mat-label>
+          <input matInput type="tel" placeholder="Salário"
+                 [(ngModel)]="Usuario.Salario"
+                 name="salario"
+                 currencyMask
+                 [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', nullable: true, allowNegative: false }">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="wd-100">
+          <mat-label>Data de nascimento</mat-label>
+          <input matInput placeholder="Nome completo" type="date" name="nascimento" [(ngModel)]="Usuario.DataNascimento">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="wd-100">
+          <mat-label>Senha</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" name="senha" [(ngModel)]="Usuario.Senha">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="wd-100">
+          <mat-label>Confirme sua senha</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" name="confirmarSenha" [(ngModel)]="Usuario.ConfirmacaoSenha">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-card-actions fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" class="wd-100" (click)="submitForm()">CONFIRMAR</button>
+        </mat-card-actions>
+  </mat-card>
+  </form>
+
+    <div style="margin: 0 auto; display:block; max-width: 500px;">
+        <ul>
+          <li *ngFor="let usuario of listaUsuarios">{{usuario.Nome}} - {{usuario.DataNascimento}}</li>
+        </ul>
+    </div>
+</div>

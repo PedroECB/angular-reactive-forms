@@ -4,29 +4,38 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import { FormValidationComponent } from './form-validation/form-validation.component';
-import { FormGroupComponent } from './form-group/form-group.component'
+
+import { FormsModule } from '@angular/forms';
+import {LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
+import ptBr from '@angular/common/locales/pt';
+import { NgxCurrencyModule } from "ngx-currency";
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { MaterialModule } from './material/material.module';
+import { ComponentesModule } from './componentes/componentes.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TemplateDrivenFormComponent,
-    FormValidationComponent,
-    FormGroupComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    NgxCurrencyModule,
+    MaterialModule,
+    ComponentesModule,
+    NgxMaskModule.forRoot(),
   ],
-  providers: [],
+  exports:[
+    // NgxCurrencyModule,
+    // MaterialModule,
+    // ComponentesModule
+  ],
+  providers: [
+    // { provide: LOCALE_ID, useValue: 'pt-BR' },
+    // { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

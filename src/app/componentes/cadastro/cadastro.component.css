@@ -1,0 +1,11 @@
+.form-one{
+    min-width: 300px;
+    max-width: 500px;
+    text-align: center;
+    margin-top: 20px;
+    margin: 30px auto;
+}
+
+.wd-100{
+    width: 100%;
+}
