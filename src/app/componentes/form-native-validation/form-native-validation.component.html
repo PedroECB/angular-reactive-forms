@@ -1,44 +1,85 @@
 <div class="container">
+    <h2 class="text-center">Informe seus dados</h2>
     <div class="form-cadastro mt-4">
         <form #formUsuario="ngForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-md-6">
-                    <input type="text" class="form-control mt-3" name="nome" [(ngModel)]="usuario.nome" [ngClass]="{'is-valid': inputNome.valid, 'is-invalid': inputNome.invalid && inputNome.touched}"
-                        placeholder="Nome" aria-label="Nome" required minlength="5" #inputNome="ngModel" autofocus>
-                        <div class="invalid-feedback">Preencha o nome corretamente!</div>
-                        <!-- Propriedades que poderão ser acessadas através da associação do #template ao ngModel -->
-                        <!-- #template.valid -->
-                        <!-- #template.invalid -->
-                        <!-- #template.pristine -->
-                        <!-- #template.touched -->
-                        <!-- #template.untouched -->
-                        <!-- #template.value e etc. -->
+                    <input type="text"
+                           class="form-control mt-3"
+                           name="nome"
+                           [(ngModel)]="usuario.nome"
+                           [ngClass]="{'is-valid': inputNome.valid, 'is-invalid': inputNome.invalid && inputNome.touched}"
+                           placeholder="Nome"
+                           aria-label="Nome"
+                           required
+                           (input)="usuario.nome = toUpperCase(usuario.nome)"
+                           minlength="5"
+                           #inputNome="ngModel"
+                           autofocus>
+                           <!-- <ng-container *ngIf="inputNome.errors">
+                                {{ inputNome.errors | json }}
+                           </ng-container> -->
+                    <div class="invalid-feedback" *ngIf="inputNome.errors?.required">O campo nome é obrigatório!</div>
+                    <div class="invalid-feedback" *ngIf="inputNome.errors?.minlength">Digite pelo menos 5 caracteres!</div>
+
+                    <!-- Propriedades que poderão ser acessadas através da associação do #template ao ngModel -->
+                    <!-- #template.valid -->
+                    <!-- #template.invalid -->
+                    <!-- #template.pristine -->
+                    <!-- #template.touched -->
+                    <!-- #template.untouched -->
+                    <!-- #template.value e etc. -->
 
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control mt-3" name="sobrenome" [(ngModel)]="usuario.sobreNome" [ngClass]="{'is-invalid': inputSobrenome.invalid && inputSobrenome.touched}"
-                        placeholder="Sobrenome" aria-label="Sobrenome" #inputSobrenome="ngModel" required minlength="4">
-                        <div class="invalid-feedback">Preencha o sobrenome corretamente!</div>
+                    <input type="text"
+                           class="form-control mt-3"
+                           name="sobrenome"
+                           [(ngModel)]="usuario.sobreNome"
+                           [ngClass]="{'is-invalid': inputSobrenome.invalid && inputSobrenome.touched, 'is-valid': inputSobrenome.valid }"
+                           placeholder="Sobrenome"
+                           aria-label="Sobrenome"
+                           #inputSobrenome="ngModel"
+                           required
+                           minlength="3">
+                    <div class="invalid-feedback" *ngIf="inputSobrenome.errors?.required">O sobrenome é obrigatório!</div>
+                    <div class="invalid-feedback" *ngIf="inputSobrenome.errors?.minlength">Insira um sobrenome válido!</div>
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <input type="email" class="form-control mt-3" name="email" [(ngModel)]="usuario.email" [ngClass]="{'is-valid': inputEmail.valid, 'is-invalid': inputEmail.invalid && inputEmail.touched}"
-                        placeholder="Email" aria-label="Email" #inputEmail="ngModel" required >
-                        <div class="invalid-feedback">Preencha o campo de e-mail corretamente!</div>
-                        <div class="valid-feedback">E-mail válido!</div>
+                    <input type="email" class="form-control mt-3" name="email" [(ngModel)]="usuario.email"
+                        [ngClass]="{'is-valid': inputEmail.valid, 'is-invalid': inputEmail.invalid && inputEmail.touched}"
+                        placeholder="Email" aria-label="Email" #inputEmail="ngModel" required email>
+                    <div class="invalid-feedback" *ngIf="inputEmail.errors?.required">O campo e-mail é obrigatório!</div>
+                    <div class="invalid-feedback" *ngIf="inputEmail.errors?.email">Insira um endereço de e-mail válido!</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="tel" class="form-control mt-3" name="telefone" [(ngModel)]="usuario.telefone"
+                        [ngClass]="{'is-valid': inputTelefone.valid, 'is-invalid': inputTelefone.invalid && inputTelefone.touched}"
+                        placeholder="Telefone" aria-label="Telefone" #inputTelefone="ngModel" required minlength="11"
+                        [mask]="'(00) 0 0000-0000'">
+                    <div class="invalid-feedback" *ngIf="inputTelefone.errors?.minlength">Insira um número telefone válido!</div>
+                    <div class="invalid-feedback" *ngIf="inputTelefone.errors?.required">O telefone é obrigatório!</div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <input type="password" class="form-control mt-3" name="senha" [(ngModel)]="usuario.senha"
+                    <input type="password" class="form-control mt-3" [ngClass]="{'is-invalid': inputSenha.invalid && inputSenha.touched}" name="senha" [(ngModel)]="usuario.senha"
                         placeholder="Senha" aria-label="Senha" #inputSenha="ngModel" required minlength="8">
+                    <div class="invalid-feedback" *ngIf="inputSenha.errors?.required">O campo senha é obrigatório!</div>
+                    <div class="invalid-feedback" *ngIf="inputSenha.errors?.minlength">Sua senha deve ter pelo menos 8 caracteres!</div>
+
                 </div>
                 <div class="col-md-6">
-                    <input type="password" class="form-control mt-3" name="confirmacaoSenha" [ngClass]="{'is-invalid': (inputSenha.value != inputConfirmacaoSenha.value) && inputConfirmacaoSenha.touched}"
+                    <input type="password" class="form-control mt-3" name="confirmacaoSenha"
+                        [ngClass]="{'is-invalid': (inputSenha.value != inputConfirmacaoSenha.value) && inputConfirmacaoSenha.touched}"
                         [(ngModel)]="usuario.confirmacaoSenha" placeholder="Confirmar senha"
                         aria-label="Confirmação de senha" #inputConfirmacaoSenha="ngModel" required minlength="8">
-                        <div class="invalid-feedback">Confirme a senha corretamente!</div>
+                    <div class="invalid-feedback">Confirme a senha corretamente!</div>
 
                 </div>
             </div>

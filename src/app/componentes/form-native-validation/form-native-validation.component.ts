@@ -1,3 +1,4 @@
+import { DataSource } from '@angular/cdk/collections';
 import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -12,6 +13,7 @@ export class FormNativeValidationComponent implements OnInit, AfterViewChecked {
     nome: '',
     sobreNome: '',
     email: '',
+    telefone:'',
     senha: '',
     confirmacaoSenha: ''
   }
@@ -20,7 +22,7 @@ export class FormNativeValidationComponent implements OnInit, AfterViewChecked {
   handleKeyboardEvent(event: KeyboardEvent) {
 
 		if (event.keyCode == 11) {
-      console.log('CTRL + SHIFT + K')
+      // console.log('CTRL + SHIFT + K')
       this.preencherDados()
 		}
 	}
@@ -29,7 +31,6 @@ export class FormNativeValidationComponent implements OnInit, AfterViewChecked {
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-
   }
 
   ngAfterViewChecked() {
@@ -50,6 +51,12 @@ export class FormNativeValidationComponent implements OnInit, AfterViewChecked {
     this.usuario.confirmacaoSenha = 'zezobrasil@2312';
 
 
+  }
+
+
+  toUpperCase(value:any){
+  // console.log(value)
+    return value.toUpperCase();
   }
 
 }
