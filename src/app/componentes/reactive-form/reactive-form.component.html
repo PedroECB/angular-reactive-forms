@@ -1,0 +1,69 @@
+<div class="container">
+    <h2 class="text-center">Informe seus dados</h2>
+    <div class="form-cadastro mt-4">
+        <form #formUsuario="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text"
+                           class="form-control mt-3"
+                           name="nome"
+                           [(ngModel)]="usuario.Nome"
+                           placeholder="Nome"
+                           aria-label="Nome"
+                           required
+                           minlength="5"
+                           #inputNome="ngModel">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="email" class="form-control mt-3" name="email" [(ngModel)]="usuario.Email"
+                        placeholder="Email" aria-label="Email" #inputEmail="ngModel" required email>
+                        <small *ngIf="inputEmail.errors?.email" class="text-danger">Insira um e-mail válido!</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="tel" class="form-control mt-3" name="cpf" [(ngModel)]="usuario.CPF"
+                        placeholder="CPF" aria-label="CPF" #inputCPF="ngModel" required  [mask]="'000.000.000-00'">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="tel" class="form-control mt-3" name="telefone" [(ngModel)]="usuario.Telefone"
+                        [ngClass]="{'is-valid': inputTelefone.valid, 'is-invalid': inputTelefone.invalid && inputTelefone.touched}"
+                        placeholder="Telefone" aria-label="Telefone" #inputTelefone="ngModel" required minlength="11"
+                        [mask]="'(00) 0 0000-0000'">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control mt-3" name="salario"
+                           [(ngModel)]="usuario.Salario"
+                           currencyMask  [options]="{'prefix': 'R$ ', thousands: '.', decimal: ','}"
+                        placeholder="Salário desejado" aria-label="Salário" #inputSalario="ngModel" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="password" class="form-control mt-3" name="senha" autocomplete="on" [(ngModel)]="usuario.Senha"
+                        placeholder="Senha" aria-label="Senha" #inputSenha="ngModel"  required minlength="8">
+                </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control mt-3" autocomplete="on" name="confirmacaoSenha"
+                        [(ngModel)]="usuario.ConfirmacaoSenha" placeholder="Confirmar senha"
+                        aria-label="Confirmação de senha" #inputConfirmacaoSenha="ngModel" required minlength="8">
+
+                </div>
+            </div>
+            <div class="row mt-3">
+                <button class="btn btn-md btn-primary" [disabled]="!formUsuario.valid">Confirmar</button>
+            </div>
+            {{ formUsuario.valid }}
+        </form>
+    </div>
+</div>

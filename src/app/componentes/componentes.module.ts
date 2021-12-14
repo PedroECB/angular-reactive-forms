@@ -4,16 +4,18 @@ import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { NgxCurrencyModule } from 'ngx-currency';
+import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
 import { NgxMaskModule } from 'ngx-mask';
 import { FormNativeValidationComponent } from './form-native-validation/form-native-validation.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 
 @NgModule({
   declarations: [
     CadastroComponent,
     LoginComponent,
-    FormNativeValidationComponent
+    FormNativeValidationComponent,
+    ReactiveFormComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { FormNativeValidationComponent } from './form-native-validation/form-nat
   exports:[
     CadastroComponent,
     LoginComponent,
-    FormNativeValidationComponent
+    FormNativeValidationComponent,
+    ReactiveFormComponent
   ],
   providers:[
 

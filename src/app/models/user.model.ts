@@ -5,5 +5,6 @@ export interface  User{
     Salario?:number,
     DataNascimento:string,
     Senha:string,
+    Telefone?:string,
     ConfirmacaoSenha:string
 }

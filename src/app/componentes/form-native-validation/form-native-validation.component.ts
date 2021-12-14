@@ -13,7 +13,7 @@ export class FormNativeValidationComponent implements OnInit, AfterViewChecked {
     nome: '',
     sobreNome: '',
     email: '',
-    telefone:'',
+    telefone: '',
     senha: '',
     confirmacaoSenha: ''
   }
@@ -21,11 +21,11 @@ export class FormNativeValidationComponent implements OnInit, AfterViewChecked {
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
 
-		if (event.keyCode == 11) {
+    if (event.keyCode == 11) {
       // console.log('CTRL + SHIFT + K')
       this.preencherDados()
-		}
-	}
+    }
+  }
 
 
   constructor(private cdr: ChangeDetectorRef) { }
@@ -43,7 +43,7 @@ export class FormNativeValidationComponent implements OnInit, AfterViewChecked {
     console.log(this.usuario)
   }
 
-  preencherDados(){
+  preencherDados() {
     this.usuario.nome = 'Joselino';
     this.usuario.sobreNome = 'Bezerra da Silva';
     this.usuario.email = 'josebezerra@gmail.com';
@@ -54,8 +54,8 @@ export class FormNativeValidationComponent implements OnInit, AfterViewChecked {
   }
 
 
-  toUpperCase(value:any){
-  // console.log(value)
+  toUpperCase(value: any) {
+    // console.log(value)
     return value.toUpperCase();
   }
 

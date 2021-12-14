@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import ptBr from '@angular/common/locales/pt';
 import { NgxCurrencyModule } from "ngx-currency";
@@ -22,6 +22,7 @@ import { ComponentesModule } from './componentes/componentes.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxCurrencyModule,
     MaterialModule,
     ComponentesModule,
