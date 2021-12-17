@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-reactive-form',
@@ -19,7 +20,17 @@ usuario:User = {
   ConfirmacaoSenha:''
 }
 
-  constructor() { }
+
+@HostListener('document:keypress', ['$event'])
+handleKeyboardEvent(event: KeyboardEvent) {
+
+  if (event.keyCode == 11) {
+    // this.preencherDados()
+    console.log(event)
+  }
+}
+
+  constructor(private httpClient:HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -30,5 +41,8 @@ usuario:User = {
     console.log('Submit form...')
     console.log(this.usuario)
   }
+
+
+
 
 }

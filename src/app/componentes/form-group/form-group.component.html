@@ -1,0 +1,60 @@
+<div class="container">
+    <h2 class="text-center">FormControl </h2>
+    <div class="form-cadastro mt-4">
+
+        <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control mt-3" name="nome" placeholder="Nome"
+                           aria-label="Nome" required minlength="5" formControlName="nome">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="email" class="form-control mt-3" name="email"
+                        placeholder="Email" aria-label="Email"  required email formControlName="email">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="tel" class="form-control mt-3" name="cpf"
+                        placeholder="CPF" aria-label="CPF"  required  [mask]="'000.000.000-00'">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="tel" class="form-control mt-3" name="telefone"
+                        placeholder="Telefone" aria-label="Telefone" required minlength="11"
+                        [mask]="'(00) 0 0000-0000'" [dropSpecialCharacters]="false" >
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control mt-3 text-start" name="salario"
+                           currencyMask  [options]="{'prefix': 'R$ ', thousands: '.', decimal: ','}"
+                        placeholder="Salário desejado" aria-label="Salário" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="password" class="form-control mt-3" name="senha" autocomplete="on"
+                        placeholder="Senha" aria-label="Senha"  required minlength="8">
+                </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control mt-3" autocomplete="on" name="confirmacaoSenha"
+                         placeholder="Confirmar senha"
+                        aria-label="Confirmação de senha" required minlength="8">
+
+                </div>
+            </div>
+            <div class="row mt-3">
+                <button class="btn btn-md btn-primary" >Confirmar</button>
+            </div>
+        </form>
+
+    </div>
+</div>

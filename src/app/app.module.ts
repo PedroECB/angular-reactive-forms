@@ -9,9 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import ptBr from '@angular/common/locales/pt';
 import { NgxCurrencyModule } from "ngx-currency";
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask'
 import { MaterialModule } from './material/material.module';
 import { ComponentesModule } from './componentes/componentes.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,11 @@ import { ComponentesModule } from './componentes/componentes.module';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NgxCurrencyModule,
     MaterialModule,
     ComponentesModule,
+    ReactiveFormsModule,
     NgxMaskModule.forRoot(),
   ],
   exports:[
