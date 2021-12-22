@@ -1,0 +1,71 @@
+<div class="container">
+    <h2 class="text-center">FormControl </h2>
+    <div class="form-cadastro mt-4">
+
+        <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control mt-3" name="nome" placeholder="Nome"
+                           aria-label="Nome" required minlength="5" formControlName="nome">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="email" class="form-control mt-3" name="email"
+                        placeholder="Email" aria-label="Email"  required email formControlName="email">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="tel" class="form-control mt-3" name="cpf"
+                        placeholder="CPF" aria-label="CPF"  required  [mask]="'000.000.000-00'" formControlName="cpf">
+                </div>
+                <div class="col-md-6">
+                    <input type="tel" class="form-control mt-3" name="telefone"
+                        placeholder="Telefone" aria-label="Telefone" required minlength="11"
+                        [mask]="'(00) 0 0000-0000'" [dropSpecialCharacters]="false" formControlName="telefone">
+                </div>
+            </div>
+
+            <div formGroupName="endereco">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control mt-3" name="cep"
+                            placeholder="CEP" aria-label="Cep" required minlength="9"
+                            [mask]="'00000-000'" [dropSpecialCharacters]="false" formControlName="cep" (blur)="getDataAddress()">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="rua" class="form-control mt-3" name="rua"
+                            placeholder="Logradouro" aria-label="Logradouro" required minlength="5" formControlName="rua">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control mt-3" name="cidade"
+                            placeholder="Cidade" aria-label="cidade" required minlength="9" formControlName="cidade">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control mt-3" name="bairro"
+                        placeholder="Bairro" aria-label="bairro" required minlength="9" formControlName="bairro">
+
+                        <!-- <select name="estado" id="selectEstado" class="form-control mt-3" name="estado" required formControlName="estado" placeholder="Estado">
+                            <option value="" selected disabled>Estado</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="MG">MG</option>
+                            <option value="SP">SP</option>
+                            <option value="RS">RS</option>
+                        </select> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <button class="btn btn-md btn-primary" type="submit" >Confirmar</button>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -52,7 +52,7 @@ export class FormGroupComponent implements OnInit {
   submitForm() {
     console.log('%c Enviando dados do usuário', 'color: yellow');
     console.log(this.userForm.value);
-    console.log(this.userForm.value.nome)
+    // console.log(this.userForm.value.nome)
 
 
 

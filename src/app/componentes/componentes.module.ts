@@ -10,6 +10,7 @@ import { FormNativeValidationComponent } from './form-native-validation/form-nat
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { FormControlComponent } from './form-control/form-control.component';
 import { FormGroupComponent } from './form-group/form-group.component';
+import { FormBuilderComponent } from './form-builder/form-builder.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormGroupComponent } from './form-group/form-group.component';
     FormNativeValidationComponent,
     ReactiveFormComponent,
     FormControlComponent,
-    FormGroupComponent
+    FormGroupComponent,
+    FormBuilderComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { FormGroupComponent } from './form-group/form-group.component';
     FormNativeValidationComponent,
     ReactiveFormComponent,
     FormControlComponent,
-    FormGroupComponent
+    FormGroupComponent,
+    FormBuilderComponent
   ],
   providers:[
 
