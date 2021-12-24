@@ -1,6 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+/**
+ *
+ * @param FormGroup [FormGroup] -> Diretiva utilizada para determinar grupos de nível superior em formulários
+ * @param FormGroupName FormGroupName -> Diretiva utilizada para determinar grupos de nível inferior (aninhado/nested) dentro de FormGroup em formulários
+ * @param FormControlName FormControlName -> Diretiva para inputs em formGroups
+ *
+*/
+
 
 @Component({
   selector: 'app-form-builder',
@@ -32,14 +41,21 @@ export class FormBuilderComponent implements OnInit {
       rua: [''],
       cidade: [''],
       bairro: ['']
-    })
+    }),
+    phones: this.formBuilder.array([''])
   })
+
+
+
+  phones = this.userForm.get('phones') as FormArray;
 
 
   constructor(private http:HttpClient, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     console.log('Init FormBuilder')
+
+    console.log(this.phones.controls)
   }
 
 
@@ -63,17 +79,21 @@ export class FormBuilderComponent implements OnInit {
       .then((returnData)=>{
 
         if(!returnData['erro']){
-          console.log(returnData)
           this.userForm.get(['endereco', 'rua']).setValue(returnData['logradouro'])
           this.userForm.get(['endereco', 'cidade']).setValue(returnData['localidade'])
           this.userForm.get(['endereco', 'bairro']).setValue(returnData['bairro'])
-
         }
 
       })
     }
 
 
+  }
+
+
+
+  addPhoneInput(){
+    this.phones.push(this.formBuilder.control(''))
   }
 
 }

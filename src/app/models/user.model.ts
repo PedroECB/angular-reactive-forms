@@ -7,4 +7,5 @@ export interface  User{
     Senha:string,
     Telefone?:string,
     ConfirmacaoSenha:string
+
 }
