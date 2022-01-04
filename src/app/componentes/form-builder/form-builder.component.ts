@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidatorsCustom } from '../utils/ValidatorsCustom';
 /**
  *
  * @param FormGroup [FormGroup] -> Diretiva utilizada para determinar grupos de nível superior em formulários
@@ -33,14 +33,14 @@ export class FormBuilderComponent implements OnInit {
 
   userForm = this.formBuilder.group({
     nome: ['Pedro Henrique Bastos'],
-    email: ['pedrosophbc'],
-    cpf: ['093.231.323-31'],
-    telefone: ['(81) 92323-3231'],
+    email: ['pedrosophbc@gmail.com', [Validators.required, Validators.minLength(10), Validators.email]],
+    cpf: ['093.231.323-31', [Validators.required, ValidatorsCustom.ValidaCPF]],
+    telefone: ['(81) 92323-3231', [Validators.required]],
     endereco: this.formBuilder.group({
-      cep: [''],
-      rua: [''],
-      cidade: [''],
-      bairro: ['']
+      cep: ['', [Validators.required]],
+      rua: ['', [Validators.required]],
+      cidade: ['', [Validators.required]],
+      bairro: ['', [Validators.required]]
     }),
     phones: this.formBuilder.array([''])
   })
@@ -62,6 +62,12 @@ export class FormBuilderComponent implements OnInit {
 
   submitForm() {
     console.log(this.userForm.value)
+
+
+    console.log(this.userForm.get(['nome']).valid)
+    console.log(this.userForm.valid)
+    this.userForm.get(['nome']).setErrors({cpfInvalid: true});
+    // this.userForm.get(['nome']).se
   }
 
 

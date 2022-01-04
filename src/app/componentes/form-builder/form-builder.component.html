@@ -7,6 +7,11 @@
                 <div class="col-md-12">
                     <input type="text" class="form-control mt-3" name="nome" placeholder="Nome"
                            aria-label="Nome" required minlength="5" formControlName="nome">
+                        <ng-container>{{userForm.get('nome').errors | json }}</ng-container>
+                        <small *ngIf="userForm.get('nome').errors?.cpfInvalid">
+                            CPF inválido...
+                        </small>
+
                 </div>
             </div>
 
@@ -14,6 +19,11 @@
                 <div class="col-md-12">
                     <input type="email" class="form-control mt-3" name="email"
                         placeholder="Email" aria-label="Email"  required email formControlName="email">
+                        <ng-container>{{userForm.get('email').errors | json }}</ng-container>
+                        <!-- <ng-container *ngIf="userForm.get('email').errors?.required">O campo e-mail é obrigatório</ng-container> -->
+                        <!-- {{userForm.controls.email.errors?.required }} {{ userForm.controls.email.errors?.minlength.requiredLength }} -->
+                        <!-- {{userForm.controls.email.hasError('required') }} -->
+                        <!-- userForm.get('email').errors?.required...-->
                 </div>
             </div>
 
@@ -21,6 +31,15 @@
                 <div class="col-md-6">
                     <input type="tel" class="form-control mt-3" name="cpf"
                         placeholder="CPF" aria-label="CPF"  required  [mask]="'000.000.000-00'" formControlName="cpf">
+                        <small *ngIf="userForm.controls.cpf.errors?.required && userForm.controls.cpf.dirty">
+                            O campo de CPF é obrigatório!
+                        </small>
+                        <small *ngIf="userForm.controls.cpf.errors?.cpfInvalido">
+                            CPF inválido!
+                        </small>
+                        <ng-container>
+                            {{userForm.controls.cpf.errors | json}}
+                        </ng-container>
                 </div>
                 <div class="col-md-6" formArrayName="phones">
                     <input type="text" class="form-control mt-3" name="phone" *ngFor="let c of phones.controls; let i = index;"
